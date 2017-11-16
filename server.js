@@ -14,15 +14,18 @@ var port = process.env.PORT || 3000;
 // Sets up the Express app to handle data parsing
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-
+// app.use(express.static(path.resolve('./assets')));
+app.use("/assets", express.static(path.join(__dirname, 'assets')));
 // Star Wars Characters (DATA)
 // =============================================================
 var reservations = [
   {
     name: "yoda",
+    party: 3,
     phoneNumber: "9199331234",
-    email: "JediMaster@aol.com",
-    uniqueID: 900,
+    //email: "JediMaster@aol.com",
+    //uniqueID: 900,
+    time: "7:30pm"
   },
   // {
   //   routeName: "darthmaul",
@@ -46,6 +49,10 @@ var reservations = [
 // Basic route that sends the user first to the AJAX Page
 app.get("/", function(req, res) {
   res.sendFile(path.join(__dirname, "home.html"));
+});
+
+app.get("/marinaHome", function(req, res) {
+  res.sendFile(path.join(__dirname, "marinaHome.html"));
 });
 
 app.get("/tables", function(req, res) {
@@ -84,14 +91,15 @@ app.post("/api/tables", function(req, res) {
   // This works because of our body-parser middleware
   var newReservation = req.body;
   newReservation.name = newReservation.name.replace(/\s+/g, "").toLowerCase();
+  newReservation.party = newReservation.party.replace(/\s+/g, "");
   newReservation.phoneNumber = newReservation.phoneNumber.replace(/\s+/g, "").toLowerCase();
-  newReservation.email = newReservation.email.replace(/\s+/g, "").toLowerCase();
-  newReservation.uniqueID = newReservation.uniqueID.replace(/\s+/g, "").toLowerCase();
-  //   {
+  newReservation.time = newReservation.time.replace(/\s+/g, "").toLowerCase();
+  // object example
+  // {
   //   name: "yoda",
+  //   party: 3,
   //   phoneNumber: "9199331234",
-  //   email: "JediMaster@aol.com",
-  //   uniqueID: 900,
+  //   time: "7:30pm"
   // },
 
   console.log(newReservation);
