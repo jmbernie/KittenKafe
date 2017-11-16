@@ -42,7 +42,7 @@
 </div>
 
 <script>
-	$.get("/api/new", function(data, err){
+	$.get("/all", function(data, err){
 		for( var i = 0; i < data.reservations.length; i++){
 		$("#party-name").text(data.reservations.name).append();
 		$("#party-size").text(data.reservations.party).append();
