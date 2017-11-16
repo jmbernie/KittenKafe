@@ -17,7 +17,7 @@
 		<h4>Come enjoy a fine meal with the finest felines</h4>
 		<hr>
 
-		<a href="/tables"><button type="button" class="btn btn-primary btn-lg"><span class="glyphicon clyphicon-eye-open"></span>Tables</button></a>
+		<a href="/table"><button type="button" class="btn btn-primary btn-lg"><span class="glyphicon clyphicon-eye-open"></span>Tables</button></a>
 
 		<a href="/"><button type="button" class="btn btn-lg">Home</button></a>
 	</div>
@@ -40,7 +40,7 @@
 
 						<div class="form-group">
 							<label for="party">Number of People in Party</label>
-							<input type="text" class="form-control" id="age">
+							<input type="text" class="form-control" id="party">
 						</div>
 
 						<div class="form-group">
@@ -63,5 +63,25 @@
 			</div>
 		</div>
 	</div>
+
+	  <script type="text/javascript">
+  
+    $("#add-btn").on("click", function(event) {
+      event.preventDefault();
+      var newReservation = {
+        name: $("#name").val().trim(),
+        party: $("#party").val().trim(),
+        phoneNumber: $("#phone").val().trim(),
+        time: $("time").val().trim()
+      };
+
+      // Question: What does this code do??
+      $.post("/api/new", newReservation)
+      .done(function(data) {
+        console.log(data);
+        console.log("Adding reservation...");
+      });
+    });
+  </script>
 </body>
 </html>
