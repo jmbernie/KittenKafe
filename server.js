@@ -59,8 +59,8 @@ app.get("/tables", function(req, res) {
   res.sendFile(path.join(__dirname, "tables.html"));
 });
 
-app.get("/reserve", function(req, res) {
-  res.sendFile(path.join(__dirname, "reserve.html"));
+app.get("/reservation", function(req, res) {
+  res.sendFile(path.join(__dirname, "reservation.html"));
 });
 
 // Get all characters
