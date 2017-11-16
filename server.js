@@ -79,18 +79,27 @@ app.get("/all", function(req, res) {
 // });
 
 // Create New Characters - takes in JSON input
-// app.post("/api/new", function(req, res) {
-//   // req.body hosts is equal to the JSON post sent from the user
-//   // This works because of our body-parser middleware
-//   var newcharacter = req.body;
-//   newcharacter.routeName = newcharacter.name.replace(/\s+/g, "").toLowerCase();
+app.post("/api/tables", function(req, res) {
+  // req.body hosts is equal to the JSON post sent from the user
+  // This works because of our body-parser middleware
+  var newReservation = req.body;
+  newReservation.name = newReservation.name.replace(/\s+/g, "").toLowerCase();
+  newReservation.phoneNumber = newReservation.phoneNumber.replace(/\s+/g, "").toLowerCase();
+  newReservation.email = newReservation.email.replace(/\s+/g, "").toLowerCase();
+  newReservation.uniqueID = newReservation.uniqueID.replace(/\s+/g, "").toLowerCase();
+  //   {
+  //   name: "yoda",
+  //   phoneNumber: "9199331234",
+  //   email: "JediMaster@aol.com",
+  //   uniqueID: 900,
+  // },
 
-//   console.log(newcharacter);
+  console.log(newReservation);
 
-//   characters.push(newcharacter);
+  reservations.push(newReservation);
 
-//   res.json(newcharacter);
-// });
+  res.json(newReservation);
+});
 
 // Starts the server to begin listening
 // =============================================================
